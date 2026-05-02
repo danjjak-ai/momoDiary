@@ -1,0 +1,35 @@
+# Next.js / Node
+momo-app/node_modules/
+momo-app/.next/
+momo-app/out/
+momo-app/build/
+momo-app/.env*
+momo-app/*.log
+
+# Gstack related files (as requested)
+gstack-main/
+gstack-*.md
+gstack-*.html
+gstack-*.json
+gstack-review.md
+gstack-investigate.md
+gstack-office-hours.md
+gstack-qa-plan.md
+researchMerge.md
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Android / Capacitor (coming soon)
+momo-app/android/
+momo-app/capacitor.config.json
+momo-app/www/
+
+# Python / uv
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
