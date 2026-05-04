@@ -74,6 +74,11 @@ body {
   image-rendering: pixelated;
 }
 
+.pixelated-text {
+  image-rendering: pixelated;
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+}
+
 /* Patterns */
 .pattern-dots {
   background-image: radial-gradient(var(--color-lcd-ink) 1px, transparent 0);
