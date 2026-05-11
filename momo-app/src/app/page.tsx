@@ -338,6 +338,24 @@ export default function Home() {
                   </div>
 
                   <div className="app-card">
+                    <label className="text-[11px] font-bold text-muted mb-3 block">단짝 친구 선택</label>
+                    <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+                      {CHARACTERS.map((char, index) => (
+                        <button 
+                          key={index}
+                          onClick={() => setCharacterType(index)} 
+                          className={`flex-shrink-0 w-12 h-12 rounded-xl border-2 flex items-center justify-center text-2xl transition-all ${
+                            characterType === index ? "border-primary bg-primary/5 scale-110 shadow-sm" : "border-line bg-white opacity-60 hover:opacity-100"
+                          }`}
+                          title={char.name}
+                        >
+                          {char.emoji}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="app-card">
                     <label className="text-[11px] font-bold text-muted mb-3 block">룸 테마 & 패턴</label>
                     <div className="flex gap-2">
                       {(["dots", "grid", "stripes", "none"] as const).map(p => (

@@ -15,6 +15,11 @@ interface PixelCharacterProps {
 
 const CHARACTERS = [
   { name: "몽실이", emoji: "☁️", story: "폭신폭신한 구름처럼 다정한 친구예요." },
+  { name: "반달곰", emoji: "🐻", story: "가슴에 하얀 달을 품은, 듬직하고 힘이 센 친구예요." },
+  { name: "기린이", emoji: "🦒", story: "목을 길게 빼고 멀리까지 내다보는, 호기심 많은 친구예요." },
+  { name: "코알라", emoji: "🐨", story: "유칼립투스 잎을 좋아하고 잠이 많은, 느긋한 성격의 친구예요." },
+  { name: "토끼", emoji: "🐰", story: "깡충깡충 뛰어다니며 소식을 전하는, 활기찬 친구예요." },
+  { name: "용용이", emoji: "🐲", story: "하늘을 날며 소원을 들어주는, 신비롭고 용감한 친구예요." },
   { name: "뾰족이", emoji: "🌵", story: "까칠해 보이지만 속은 따뜻한 에너지 넘치는 친구!" },
   { name: "불꽃이", emoji: "🔥", story: "언제나 열정적이고 모험을 좋아하는 친구예요." },
   { name: "새싹이", emoji: "🌱", story: "자연을 사랑하고 평화를 추구하는 조용한 친구." },
