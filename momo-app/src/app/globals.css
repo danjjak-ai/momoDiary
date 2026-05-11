@@ -1,73 +1,75 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fdfdfd;
-  --foreground: #171717;
+  /* Finalized Design Tokens */
+  --ink: #22242a;
+  --muted-ink: #5b5f6a;
+  --paper: #fffdf8;
+  --soft-surface: #f7f3ea;
+  --line: #e6ded2;
+  --diary-blue: #5577b8;
+  --friend-green: #5baa7a;
+  --warm-coral: #e17965;
+  --pattern-yellow: #e8b84e;
+  --focus-violet: #7c6bae;
+  --safety-red: #c84b4b;
+
+  --radius: 12px;
+  --radius-lg: 18px;
   
-  /* Tamagotchi Colors */
-  --color-lcd-bg: #8ba88b; /* Classic greenish LCD */
-  --color-lcd-ink: #1e2d1e;
-  --color-plastic-shell: #ff7eb9; /* Hot Pink shell */
-  --color-bezel: #ffb7ce;
-  --color-accent-blue: #00ffff;
-  --color-accent-yellow: #ffff00;
-  --color-accent-cyan: #00e5ff;
+  --shadow: 0 20px 60px rgba(34, 36, 42, .14);
+  --soft-shadow: 0 10px 30px rgba(34, 36, 42, .08);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
   --font-pixel: var(--font-pixel);
   --font-vt323: var(--font-vt323);
   
-  --color-lcd-bg: var(--color-lcd-bg);
-  --color-lcd-ink: var(--color-lcd-ink);
-  --color-shell: var(--color-plastic-shell);
-  --color-bezel: var(--color-bezel);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted-ink);
+  --color-paper: var(--paper);
+  --color-surface: var(--soft-surface);
+  --color-line: var(--line);
+  --color-primary: var(--diary-blue);
+  --color-accent-green: var(--friend-green);
+  --color-accent-coral: var(--warm-coral);
 }
 
 body {
-  background: #222;
-  color: var(--foreground);
+  margin: 0;
+  background: 
+    linear-gradient(120deg, rgba(232,184,78,.18), transparent 38%),
+    linear-gradient(240deg, rgba(85,119,184,.14), transparent 42%),
+    #ebe4d8;
+  color: var(--ink);
+  line-height: 1.45;
+  min-height: 100vh;
 }
 
-/* LCD Screen Effect */
+/* Professional App Screen */
 .lcd-screen {
-  background: var(--color-lcd-bg);
-  color: var(--color-lcd-ink);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-vt323);
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
-  border: 4px solid #333;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.02);
+  border: 1px solid var(--line);
 }
 
+/* Subtle Overlay instead of scanlines */
 .lcd-screen::before {
   content: " ";
   display: block;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background: linear-gradient(rgba(0, 0, 0, 0.01) 50%, transparent 50%);
   z-index: 2;
-  background-size: 100% 2px, 3px 100%;
+  background-size: 100% 4px;
   pointer-events: none;
-}
-
-/* Scanline Animation */
-.scanline {
-  width: 100%;
-  height: 100px;
-  z-index: 3;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(255, 255, 255, 0.05) 10%, rgba(0, 0, 0, 0.1) 100%);
-  opacity: 0.1;
-  position: absolute;
-  bottom: 100%;
-  animation: scanline 10s linear infinite;
-}
-
-@keyframes scanline {
-  0% { bottom: 100%; }
-  100% { bottom: -100%; }
+  opacity: 0.3;
 }
 
 .pixelated {
@@ -75,33 +77,63 @@ body {
 }
 
 .pixelated-text {
-  image-rendering: pixelated;
-  text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+  font-family: var(--font-pixel);
+  letter-spacing: -0.05em;
+}
+
+/* App Cards */
+.app-card {
+  background: rgba(255, 253, 248, 0.9);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: var(--soft-shadow);
+  transition: transform 0.2s;
+}
+
+.question-card {
+  border-top: 4px solid var(--diary-blue);
+}
+
+.letter-card {
+  border-left: 5px solid var(--warm-coral);
+}
+
+.memory-card {
+  border-left: 5px solid var(--friend-green);
+}
+
+.pattern-card {
+  background: var(--soft-surface);
+  border: 1px solid var(--line);
 }
 
 /* Patterns */
 .pattern-dots {
-  background-image: radial-gradient(var(--color-lcd-ink) 1px, transparent 0);
+  background-image: radial-gradient(var(--line) 1px, transparent 0);
   background-size: 10px 10px;
-  background-color: var(--color-lcd-bg);
+  background-color: var(--paper);
 }
 
 .pattern-grid {
-  background-image: linear-gradient(var(--color-lcd-ink) 1px, transparent 1px), linear-gradient(90deg, var(--color-lcd-ink) 1px, transparent 1px);
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size: 20px 20px;
-  background-color: var(--color-lcd-bg);
+  background-color: var(--paper);
 }
 
 .pattern-stripes {
-  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.05) 10px, rgba(0,0,0,0.05) 20px), var(--color-lcd-bg);
+  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.05) 20px), var(--paper);
 }
 
 .beveled-button {
-  box-shadow: inset -2px -2px 0px rgba(0,0,0,0.5), inset 2px 2px 0px rgba(255,255,255,0.5);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 0 var(--line);
   transition: all 0.1s;
 }
 
 .beveled-button:active {
-  box-shadow: inset 2px 2px 0px rgba(0,0,0,0.5), inset -2px -2px 0px rgba(255,255,255,0.5);
-  transform: translate(1px, 1px);
+  box-shadow: 0 0 0 var(--line);
+  transform: translateY(4px);
 }

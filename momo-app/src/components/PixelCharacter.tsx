@@ -107,10 +107,6 @@ export const PixelCharacter = ({
         </motion.div>
       )}
 
-      {/* Stage Badge */}
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[8px] px-2 py-0.5 rounded-full font-pixel whitespace-nowrap z-20">
-        {stage.toUpperCase()}
-      </div>
     </motion.div>
   );
 };

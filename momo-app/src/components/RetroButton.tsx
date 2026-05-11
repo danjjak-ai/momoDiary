@@ -3,40 +3,44 @@
 import { cn } from "@/lib/utils";
 import React from "react";
 
-interface RetroButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "accent";
-  size?: "sm" | "md" | "lg" | "icon";
-}
-
-export const RetroButton = ({
-  children,
+export const RetroButton = ({ 
+  children, 
+  onClick, 
   className,
   variant = "primary",
   size = "md",
-  ...props
-}: RetroButtonProps) => {
+  disabled = false
+}: { 
+  children: React.ReactNode; 
+  onClick?: () => void;
+  className?: string;
+  variant?: "primary" | "secondary" | "accent";
+  size?: "sm" | "md" | "lg";
+  disabled?: boolean;
+}) => {
   const variants = {
-    primary: "bg-[#ffff00] text-black border-[#000]",
-    secondary: "bg-[#00ffff] text-black border-[#000]",
-    accent: "bg-[#ff00ff] text-white border-[#000]",
+    primary: "bg-primary text-white border-primary shadow-[0_6px_0_#3d5a8c] active:shadow-none active:translate-y-[6px]",
+    secondary: "bg-white text-ink border-line shadow-[0_6px_0_#e6ded2] active:shadow-none active:translate-y-[6px]",
+    accent: "bg-accent-coral text-white border-accent-coral shadow-[0_6px_0_#b55a4a] active:shadow-none active:translate-y-[6px]",
   };
 
   const sizes = {
-    sm: "px-2 py-1 text-[10px]",
-    md: "px-4 py-2 text-[12px]",
-    lg: "px-6 py-3 text-[14px]",
-    icon: "w-10 h-10 flex items-center justify-center rounded-full",
+    sm: "px-4 py-2 text-[12px]",
+    md: "px-6 py-3 text-[14px]",
+    lg: "px-8 py-4 text-[16px]",
   };
 
   return (
     <button
+      onClick={onClick}
+      disabled={disabled}
       className={cn(
-        "font-pixel beveled-button border-2 active:shadow-none active:translate-y-[2px] active:translate-x-[2px]",
+        "font-bold rounded-xl border transition-all duration-75 flex items-center justify-center gap-2",
         variants[variant],
         sizes[size],
+        disabled && "opacity-50 grayscale cursor-not-allowed shadow-none translate-y-0",
         className
       )}
-      {...props}
     >
       {children}
     </button>
