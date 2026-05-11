@@ -163,11 +163,11 @@ export default function Home() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="flex-1 flex flex-col items-center justify-between z-10"
+                className="flex-1 flex flex-col items-center justify-center gap-4 z-10"
               >
-                <div className="text-center mt-1 w-full">
-                  <div className="bg-white/40 backdrop-blur-sm rounded-lg px-2 py-2 mb-2 border border-black/5">
-                    <p className="text-[14px] leading-tight font-vt323">
+                <div className="text-center w-full">
+                  <div className="bg-white/40 backdrop-blur-sm rounded-lg px-2 py-2 border border-black/5">
+                    <p className="text-[14px] leading-tight font-vt323 min-h-[1.5em]">
                       {stage === "egg" ? "..." : `${characterName}: "${question}"`}
                     </p>
                   </div>
@@ -177,12 +177,12 @@ export default function Home() {
                   stage={stage}
                   characterType={characterType}
                   mood={mood} 
-                  size={140} 
+                  size={120} 
                   hue={hue} 
                   accessory={accessory} 
                 />
                 
-                <div className="w-full flex flex-col gap-2 mb-2">
+                <div className="w-full flex flex-col gap-2">
                   <RetroButton size="sm" onClick={() => setCurrentTab("diary")} disabled={stage === "egg"}>
                     {stage === "egg" ? "알이 부화하길 기다려요" : "오늘 일기 쓰기"}
                   </RetroButton>

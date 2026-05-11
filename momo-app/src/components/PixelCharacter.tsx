@@ -39,49 +39,62 @@ export const PixelCharacter = ({
     if (stage === "egg") return "🥚";
     if (stage === "baby") return "🐣";
     if (stage === "child") return "🐥";
-    return CHARACTERS[characterType % CHARACTERS.length].emoji;
+    
+    // Ensure characterType is a valid index
+    const index = Math.abs(Math.floor(characterType)) % CHARACTERS.length;
+    return CHARACTERS[index].emoji;
   };
 
   return (
     <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
       animate={{
         y: [0, -10, 0],
         scale: [1, 1.05, 1],
+        opacity: 1
       }}
       transition={{
-        duration: stage === "egg" ? 3 : 2,
-        repeat: Infinity,
-        ease: "easeInOut",
+        y: {
+          duration: stage === "egg" ? 3 : 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        },
+        scale: {
+          duration: stage === "egg" ? 3 : 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        },
+        opacity: { duration: 0.5 }
       }}
       className="relative flex items-center justify-center select-none"
       style={{ width: size, height: size }}
     >
       <div 
-        className="flex items-center justify-center"
+        className="flex items-center justify-center w-full h-full"
         style={{ 
-          filter: `hue-rotate(${hue}deg) drop-shadow(0 4px 4px rgba(0,0,0,0.1))`,
-          fontSize: size * 0.6,
+          filter: hue !== 0 ? `hue-rotate(${hue}deg)` : undefined,
+          fontSize: `${size * 0.7}px`,
           lineHeight: 1
         }}
       >
-        <span className="pixelated-text drop-shadow-md">
+        <span className="drop-shadow-md inline-block">
           {getEmoji()}
         </span>
       </div>
       
       {/* Accessories - only show if child or adult */}
       {(stage === "child" || stage === "adult") && (
-        <>
+        <div className="absolute inset-0 pointer-events-none">
           {accessory === "hat" && (
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 text-2xl drop-shadow-sm">👒</div>
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 text-2xl">👒</div>
           )}
           {accessory === "glasses" && (
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-2 text-2xl drop-shadow-sm">🕶️</div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-2 text-2xl">🕶️</div>
           )}
           {accessory === "ribbon" && (
-            <div className="absolute top-4 right-4 text-2xl drop-shadow-sm">🎀</div>
+            <div className="absolute top-4 right-4 text-2xl">🎀</div>
           )}
-        </>
+        </div>
       )}
       
       {mood === "happy" && (
@@ -95,7 +108,7 @@ export const PixelCharacter = ({
       )}
 
       {/* Stage Badge */}
-      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[8px] px-2 py-0.5 rounded-full font-pixel whitespace-nowrap">
+      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[8px] px-2 py-0.5 rounded-full font-pixel whitespace-nowrap z-20">
         {stage.toUpperCase()}
       </div>
     </motion.div>
