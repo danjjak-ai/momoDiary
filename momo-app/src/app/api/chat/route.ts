@@ -44,10 +44,6 @@ export async function POST(req: Request) {
         contents: [
           { role: 'user', parts: [{ text: systemPrompt + "\n\n" + userPrompt }] }
         ],
-        generationConfig: {
-          responseMimeType: "application/json",
-        }
-      })
     });
 
     const data = await response.json();
